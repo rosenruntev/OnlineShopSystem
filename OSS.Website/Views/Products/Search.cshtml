@@ -1,0 +1,84 @@
+﻿@model OSS.Website.Models.ProductViewModel
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>Search by name</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Search">
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seller)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedOn)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (TempData["FoundProducts"] != null && (TempData["FoundProducts"] as IEnumerable<ProductViewModel>).Count() > 0)
+        {
+            @foreach (var item in TempData["FoundProducts"] as IEnumerable<ProductViewModel>)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Seller.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UpdatedOn)
+                    </td>
+                </tr>
+              }
+          }
+     </tbody>
+</table>
