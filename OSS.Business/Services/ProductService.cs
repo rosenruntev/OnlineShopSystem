@@ -19,7 +19,7 @@ namespace OSS.Business.Services
 
             using (UnitOfWork unitOfWork = new UnitOfWork())
             {
-                var products = unitOfWork.ProductRepository.GetAll(p => p.Name == name);
+                var products = unitOfWork.ProductRepository.GetAll(p => p.Name.Contains(name));
 
                 var result = products.Select(p => new ProductDto
                 {

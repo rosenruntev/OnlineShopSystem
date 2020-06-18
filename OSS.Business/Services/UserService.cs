@@ -19,7 +19,7 @@ namespace OSS.Business.Services
 
             using (UnitOfWork unitOfWork = new UnitOfWork())
             {
-                var users = unitOfWork.UserRepository.GetAll(u => u.Name == name);
+                var users = unitOfWork.UserRepository.GetAll(u => u.Name.Contains(name));
 
                 var result = users.Select(u => new UserDto
                 {

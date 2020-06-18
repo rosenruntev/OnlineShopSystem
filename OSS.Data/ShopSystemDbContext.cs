@@ -15,7 +15,7 @@ namespace OSS.Data
         {
             optionsBuilder
                 .UseLazyLoadingProxies()
-                .UseSqlServer(@"Server=DESKTOP-2MR0QKJ\SQLEXPRESS;" +
+                .UseSqlServer(@"Server=DESKTOP-SOTOIG4\SQLEXPRESS;" +
                               @"DataBase=OnlineShopSystem;" +
                               @"Integrated Security=true;");
 

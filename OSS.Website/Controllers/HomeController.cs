@@ -30,12 +30,14 @@ namespace OSS.Website.Controllers
 
         public IActionResult Index()
         {
+            ModelState.Clear();
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> IndexAsync(AccountViewModel account)
         {
+            ModelState.Clear();
             using (var client = new HttpClient())
             {
                 string JSON_MEDIA_TYPE = "application/json";
@@ -48,12 +50,15 @@ namespace OSS.Website.Controllers
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    return RedirectToAction(nameof(HomeController.Error), "Home");
+                    TempData["LoginMessage"] = "Invalid username or password";
+                    return RedirectToAction(nameof(HomeController.Index), "Home");
                 }
 
                 string jsonResponse = await response.Content.ReadAsStringAsync();
 
                 HttpContext.Session.SetString("JwtToken", jsonResponse);
+
+                TempData["LoginMessage"] = "You have logged in successfully";
 
                 return View();
             }
