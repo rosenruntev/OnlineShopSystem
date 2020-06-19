@@ -27,13 +27,7 @@ namespace OSS.WebAPI.Controllers
         {
             if (account == null)
             {
-                account = new AccountDto
-                {
-                    Email = "test1Email",
-                    FullName = "test1FullName",
-                    Password = "test1Password",
-                    Username = "test1Username"
-                };
+                return Unauthorized();
             }
 
             AccountDto resultAccount = AuthenticateUser(account);
